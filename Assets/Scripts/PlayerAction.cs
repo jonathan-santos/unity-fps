@@ -23,6 +23,7 @@ public class PlayerAction : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         camera = GetComponentInChildren<Camera>();
+        ChangeCursor();
     }
 
     void Update()
@@ -30,6 +31,12 @@ public class PlayerAction : MonoBehaviour
         Movement();
         Aim();
         Jump();
+    }
+
+    private void ChangeCursor()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     void Movement()
