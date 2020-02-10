@@ -669,7 +669,7 @@ GameObject:
   - component: {fileID: 1921136265}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -732,11 +732,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7fca1dc92e743f4080a1a8ca71d5bba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 5
-  jumpStrengh: 0.5
+  movementSpeed: 3
+  jumpStrengh: 0.35
   sensitivity: 2.5
   smoothing: 1
   groundLayer:
     serializedVersion: 2
     m_Bits: 512
   groundDetect: {fileID: 1615959717}
+  bulletPrefab: {fileID: 6549986357454006602, guid: f44c5bb1e38724245b0743271332a75f,
+    type: 3}
+  bulletStrength: 30

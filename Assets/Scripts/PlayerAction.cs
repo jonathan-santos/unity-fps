@@ -3,11 +3,11 @@ using UnityEngine;
 public class PlayerAction : MonoBehaviour
 {
     [Header("Movement")]
-    public float movementSpeed = 5f;
-    public float jumpStrengh = 0.5f;
+    public float movementSpeed = 3f;
+    public float jumpStrengh = 0.35f;
 
     [Header("Camera")]
-    public float sensitivity = 3f;
+    public float sensitivity = 2.5f;
     public float smoothing = 1f;
     private Vector2 mouseLook;
     private Vector2 smoothV;
@@ -15,6 +15,12 @@ public class PlayerAction : MonoBehaviour
     [Header("Ground detection")]
     public LayerMask groundLayer;
     public GameObject groundDetect;
+
+    [Header("Shooting")]
+    public GameObject bulletPrefab;
+    public float bulletStrength = 5f;
+    Rigidbody bulletRB;
+
 
     Rigidbody rb;
     new Camera camera;
@@ -31,6 +37,7 @@ public class PlayerAction : MonoBehaviour
         Movement();
         Aim();
         Jump();
+        Shoot();
     }
 
     private void ChangeCursor()
@@ -58,11 +65,24 @@ public class PlayerAction : MonoBehaviour
         camera.transform.localRotation = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
         this.transform.localRotation = Quaternion.AngleAxis(mouseLook.x, this.transform.up);
     }
-    
+
     void Jump()
     {
         var isGrounded = Physics.CheckSphere(groundDetect.transform.position, 0.5f, groundLayer);
         if (isGrounded && Input.GetAxis("Jump") > 0)
             rb.AddForce(Vector3.up * jumpStrengh, ForceMode.Impulse);
+    }
+
+    void Shoot()
+    {
+        if(Input.GetButtonDown("Fire1"))
+        {
+            var bullet = Instantiate(bulletPrefab);
+            bullet.transform.position = this.transform.position;
+            bullet.transform.rotation = camera.transform.rotation;
+            bulletRB = bullet.GetComponent<Rigidbody>();
+            bulletRB.AddForce(camera.transform.rotation * Vector3.forward * bulletStrength, ForceMode.Impulse);
+            Physics.IgnoreCollision(this.GetComponent<Collider>(), bullet.GetComponent<Collider>());
+        }
     }
 }
