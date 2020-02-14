@@ -53,7 +53,7 @@ public class PlayerAction : MonoBehaviour
         this.transform.Translate(straffe, 0, translation);
     }
 
-    private void Aim()
+    void Aim()
     {
         var mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
         mouseDelta = Vector2.Scale(mouseDelta, new Vector2(sensitivity * smoothing, sensitivity * smoothing));

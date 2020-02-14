@@ -13,8 +13,13 @@ public class SpawnerAction : MonoBehaviour
     int maxcount;
     int count = 0;
 
-    void Start()
+    void Start() {
+        StartSpawn();
+    }
+
+    void StartSpawn()
     {
+        count = 0;
         maxcount = Random.Range(min, max);
         if (spawnInterval == 0)
         {
