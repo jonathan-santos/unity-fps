@@ -3,14 +3,16 @@ using UnityEngine;
 public class PlayerAction : MonoBehaviour
 {
     [Header("Movement")]
-    public float movementSpeed = 3f;
-    public float jumpStrengh = 0.35f;
+    public float movementSpeed = 4f;
+    public float jumpStrengh = 30f;
+    Rigidbody rb;
 
     [Header("Camera")]
     public float sensitivity = 2.5f;
     public float smoothing = 1f;
-    private Vector2 mouseLook;
-    private Vector2 smoothV;
+    Vector2 mouseLook;
+    Vector2 smoothV;
+    new Camera camera;
 
     [Header("Ground detection")]
     public LayerMask groundLayer;
@@ -18,19 +20,15 @@ public class PlayerAction : MonoBehaviour
 
     [Header("Shooting")]
     public GameObject bulletPrefab;
-    public float bulletStrength = 5f;
+    public float bulletStrength = 50f;
     public Transform bulletOrigin;
     Rigidbody bulletRB;
-
-
-    Rigidbody rb;
-    new Camera camera;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         camera = GetComponentInChildren<Camera>();
-        ChangeCursor();
+        RemoveMouse();
     }
 
     void Update()
@@ -41,7 +39,7 @@ public class PlayerAction : MonoBehaviour
         Shoot();
     }
 
-    private void ChangeCursor()
+    private void RemoveMouse()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -49,9 +47,10 @@ public class PlayerAction : MonoBehaviour
 
     void Movement()
     {
-        var translation = Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime;
-        var straffe = Input.GetAxis("Horizontal") * movementSpeed * Time.deltaTime;
-        this.transform.Translate(straffe, 0, translation);
+        var speed = Input.GetKey("left shift") ? movementSpeed * 2f : movementSpeed;
+        var forwardTranslation = Input.GetAxis("Vertical") * speed * Time.deltaTime;
+        var sideTranslation = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+        this.transform.Translate(sideTranslation, 0, forwardTranslation);
     }
 
     void Aim()
@@ -71,7 +70,7 @@ public class PlayerAction : MonoBehaviour
     {
         var isGrounded = Physics.CheckSphere(groundDetect.transform.position, 0.5f, groundLayer);
         if (isGrounded && Input.GetAxis("Jump") > 0)
-            rb.AddForce(Vector3.up * jumpStrengh, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * jumpStrengh, ForceMode.Force);
     }
 
     void Shoot()
