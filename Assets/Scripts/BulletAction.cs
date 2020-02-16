@@ -10,7 +10,7 @@ public class BulletAction : MonoBehaviour
         Destroy(gameObject, 3);
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collision)
     {
         if(collision.gameObject.tag == "enemy")
         {

@@ -24,7 +24,7 @@ public class EnemyAction : MonoBehaviour
     public void TakeDamage(int damage)
     {
         this.life -= damage;
-        if (this.life <= 0)
+        if (this.life < 1)
         {
             Destroy(this.gameObject);
         }

@@ -19,6 +19,7 @@ public class PlayerAction : MonoBehaviour
     [Header("Shooting")]
     public GameObject bulletPrefab;
     public float bulletStrength = 5f;
+    public Transform bulletOrigin;
     Rigidbody bulletRB;
 
 
@@ -77,9 +78,7 @@ public class PlayerAction : MonoBehaviour
     {
         if(Input.GetButtonDown("Fire1"))
         {
-            var bullet = Instantiate(bulletPrefab);
-            bullet.transform.position = this.transform.position;
-            bullet.transform.rotation = camera.transform.rotation;
+            var bullet = Instantiate(bulletPrefab, bulletOrigin.position, camera.transform.rotation);
             bulletRB = bullet.GetComponent<Rigidbody>();
             bulletRB.AddForce(camera.transform.rotation * Vector3.forward * bulletStrength, ForceMode.Impulse);
             Physics.IgnoreCollision(this.GetComponent<Collider>(), bullet.GetComponent<Collider>());
