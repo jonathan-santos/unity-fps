@@ -3,8 +3,6 @@ using UnityEngine.AI;
 
 public class EnemyAction : MonoBehaviour
 {
-    public int life = 3;
-
     NavMeshAgent agent;
     GameObject player;
 
@@ -19,14 +17,5 @@ public class EnemyAction : MonoBehaviour
     void GoToPlayer() {
         agent.destination = player.transform.position;
         transform.LookAt(player.transform.position, Vector3.up);
-    }
-
-    public void TakeDamage(int damage)
-    {
-        this.life -= damage;
-        if (this.life < 1)
-        {
-            Destroy(this.gameObject);
-        }
     }
 }

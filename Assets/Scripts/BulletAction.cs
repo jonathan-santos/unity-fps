@@ -14,8 +14,8 @@ public class BulletAction : MonoBehaviour
     {
         if(collision.gameObject.tag == "enemy")
         {
-            var enemy = collision.gameObject.GetComponent<EnemyAction>();
-            enemy.TakeDamage(this.damage);
+            var enemyLife = collision.gameObject.GetComponent<TakeDamageAction>();
+            enemyLife.TakeDamage(this.damage);
         }
 
         Destroy(gameObject);
