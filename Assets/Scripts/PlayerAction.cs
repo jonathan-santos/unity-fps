@@ -22,6 +22,7 @@ public class PlayerAction : MonoBehaviour
     public GameObject bulletPrefab;
     public float bulletStrength = 50f;
     public Transform bulletOrigin;
+    public Animator GunAnimator;
     Rigidbody bulletRB;
 
     private void Start()
@@ -77,6 +78,7 @@ public class PlayerAction : MonoBehaviour
     {
         if(Input.GetButtonDown("Fire1"))
         {
+            GunAnimator.SetTrigger("Shoot");
             var bullet = Instantiate(bulletPrefab, bulletOrigin.position, camera.transform.rotation);
             bulletRB = bullet.GetComponent<Rigidbody>();
             bulletRB.AddForce(camera.transform.rotation * Vector3.forward * bulletStrength, ForceMode.Impulse);

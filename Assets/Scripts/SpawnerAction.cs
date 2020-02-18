@@ -2,12 +2,17 @@
 
 public class SpawnerAction : MonoBehaviour
 {
+    [Header("Spawn")]
+    public float spawnInterval;
     public GameObject[] objects;
-    public int min;
-    public int max;
+
+    [Header("Quantity")]
+    public int quantityMinimum;
+    public int quantityMaximum;
+
+    [Header("Distance from Spawn")]
     public float minDistanceFromSpawn = 10;
     public float maxDistanceFromSpawn = 30;
-    public float spawnInterval;
 
     GameObject randomObject;
     int maxcount;
@@ -20,7 +25,7 @@ public class SpawnerAction : MonoBehaviour
     void StartSpawn()
     {
         count = 0;
-        maxcount = Random.Range(min, max);
+        maxcount = Random.Range(quantityMinimum, quantityMaximum);
         if (spawnInterval == 0)
         {
             for (int i = 0; i < maxcount; i++)
