@@ -3,6 +3,8 @@ using UnityEngine.AI;
 
 public class EnemyAction : MonoBehaviour
 {
+    public int damage = 1;
+
     NavMeshAgent agent;
     GameObject player;
 
@@ -17,5 +19,14 @@ public class EnemyAction : MonoBehaviour
     void GoToPlayer() {
         agent.destination = player.transform.position;
         transform.LookAt(player.transform.position, Vector3.up);
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "player")
+        {
+            var playerHealth = collision.gameObject.GetComponent<HealthAction>();
+            playerHealth.ChangeHealth(-this.damage);
+        }
     }
 }

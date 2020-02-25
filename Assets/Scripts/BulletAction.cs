@@ -14,8 +14,8 @@ public class BulletAction : MonoBehaviour
     {
         if(collision.gameObject.tag == "enemy")
         {
-            var enemyLife = collision.gameObject.GetComponent<TakeDamageAction>();
-            enemyLife.TakeDamage(this.damage);
+            var enemyLife = collision.gameObject.GetComponent<HealthAction>();
+            enemyLife.ChangeHealth(- this.damage);
         }
 
         Destroy(gameObject);
