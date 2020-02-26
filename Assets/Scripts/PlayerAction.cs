@@ -56,11 +56,21 @@ public class PlayerAction : MonoBehaviour
 
     void Aim()
     {
-        var mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
-        mouseDelta = Vector2.Scale(mouseDelta, new Vector2(sensitivity * smoothing, sensitivity * smoothing));
+        Vector2 aimDelta = Vector2.zero;
 
-        smoothV.x = Mathf.Lerp(smoothV.x, mouseDelta.x, 1f / smoothing);
-        smoothV.y = Mathf.Lerp(smoothV.y, mouseDelta.y, 1f / smoothing);
+        if (Input.GetJoystickNames().Length > 0)
+        {
+            var gamepadDelta = new Vector2(Input.GetAxisRaw("Gamepad X"), Input.GetAxisRaw("Gamepad Y"));
+            aimDelta = Vector2.Scale(gamepadDelta, new Vector2(sensitivity * smoothing, sensitivity * smoothing));
+        }
+        else
+        {
+            var mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
+            aimDelta = Vector2.Scale(mouseDelta, new Vector2(sensitivity * smoothing, sensitivity * smoothing));
+        }
+
+        smoothV.x = Mathf.Lerp(smoothV.x, aimDelta.x, 1f / smoothing);
+        smoothV.y = Mathf.Lerp(smoothV.y, aimDelta.y, 1f / smoothing);
         mouseLook += smoothV;
 
         camera.transform.localRotation = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
