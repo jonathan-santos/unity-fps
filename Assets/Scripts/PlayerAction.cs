@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 public class PlayerAction : MonoBehaviour
 {
     [Header("Movement")]
@@ -25,7 +24,7 @@ public class PlayerAction : MonoBehaviour
     public Animator GunAnimator;
     Rigidbody bulletRB;
 
-    private void Start()
+    void Start()
     {
         rb = GetComponent<Rigidbody>();
         camera = GetComponentInChildren<Camera>();
@@ -56,18 +55,8 @@ public class PlayerAction : MonoBehaviour
 
     void Aim()
     {
-        Vector2 aimDelta = Vector2.zero;
-
-        if (Input.GetJoystickNames().Length > 0)
-        {
-            var gamepadDelta = new Vector2(Input.GetAxisRaw("Gamepad X"), Input.GetAxisRaw("Gamepad Y"));
-            aimDelta = Vector2.Scale(gamepadDelta, new Vector2(sensitivity * smoothing, sensitivity * smoothing));
-        }
-        else
-        {
-            var mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
-            aimDelta = Vector2.Scale(mouseDelta, new Vector2(sensitivity * smoothing, sensitivity * smoothing));
-        }
+        var aimDelta = new Vector2(Input.GetAxisRaw("Aim X"), Input.GetAxisRaw("Aim Y"));
+        aimDelta = Vector2.Scale(aimDelta, new Vector2(sensitivity * smoothing, sensitivity * smoothing));
 
         smoothV.x = Mathf.Lerp(smoothV.x, aimDelta.x, 1f / smoothing);
         smoothV.y = Mathf.Lerp(smoothV.y, aimDelta.y, 1f / smoothing);
@@ -81,7 +70,7 @@ public class PlayerAction : MonoBehaviour
     {
         var isGrounded = Physics.CheckSphere(groundDetect.transform.position, 0.5f, groundLayer);
         if (isGrounded && Input.GetAxis("Jump") > 0)
-            rb.AddForce(Vector3.up * jumpStrengh, ForceMode.Force);
+            rb.AddForce(Vector3.up * jumpStrengh);
     }
 
     void Shoot()
