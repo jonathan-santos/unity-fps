@@ -76,8 +76,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8179a9c7054fa7448ce68aeb2910471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 3
   damage: 1
+  collisionObjectiveTag: enemy
+  destroyOnCollision: 1
 --- !u!1 &4369587734195339162
 GameObject:
   m_ObjectHideFlags: 0

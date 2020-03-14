@@ -42,7 +42,8 @@ public class EnemyAction : MonoBehaviour
             var playerHealth = collision.gameObject.GetComponent<HealthAction>();
             playerHealth.ChangeHealth(-this.damage);
             LookAtPlayer();
-            rb.AddForce(Vector3.back * attackKnockback, ForceMode.Impulse);
+
+            //rb.AddForce(Vector3.back * attackKnockback, ForceMode.Impulse);
         }
     }
 }

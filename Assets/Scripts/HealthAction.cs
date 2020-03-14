@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 public class HealthAction : MonoBehaviour
 {
-    public int maxHealth = 3;
-    public int health;
+    public float maxHealth = 3;
+    public float health;
     public bool destroyObjectOnZeroHealth = true;
     public Slider healthBar;
 
@@ -16,7 +16,7 @@ public class HealthAction : MonoBehaviour
         healthBar.value = health;
     }
 
-    public void ChangeHealth(int change)
+    public void ChangeHealth(float change)
     {
         health += change;
         healthBar.value = health;
