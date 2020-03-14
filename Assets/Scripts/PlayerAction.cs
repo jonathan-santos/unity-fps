@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+
 public class PlayerAction : MonoBehaviour
 {
     [Header("Movement")]
@@ -17,12 +19,19 @@ public class PlayerAction : MonoBehaviour
     public LayerMask groundLayer;
     public GameObject groundDetect;
 
-    [Header("Shooting")]
+    [Header("Bullet")]
     public GameObject bulletPrefab;
     public float bulletStrength = 50f;
+    public int bulletLifeTime = 3;
     public Transform bulletOrigin;
     public Animator GunAnimator;
+    GameObject bullet;
     Rigidbody bulletRB;
+
+    [Header("Ammo")]
+    public int maxAmmo = 8;
+    public int currentAmmo = 8;
+    public Text ammoCountText;
 
     void Start()
     {
@@ -37,6 +46,7 @@ public class PlayerAction : MonoBehaviour
         Aim();
         Jump();
         Shoot();
+        Reload();
     }
 
     private void RemoveMouse()
@@ -75,13 +85,27 @@ public class PlayerAction : MonoBehaviour
 
     void Shoot()
     {
-        if(Input.GetButtonDown("Fire1"))
+        if(Input.GetButtonDown("Fire1") && this.currentAmmo > 0)
         {
             GunAnimator.SetTrigger("Shoot");
-            var bullet = Instantiate(bulletPrefab, bulletOrigin.position, camera.transform.rotation);
+
+            bullet = Instantiate(bulletPrefab, bulletOrigin.position, camera.transform.rotation);
             bulletRB = bullet.GetComponent<Rigidbody>();
             bulletRB.AddForce(camera.transform.rotation * Vector3.forward * bulletStrength, ForceMode.Impulse);
             Physics.IgnoreCollision(this.GetComponent<Collider>(), bullet.GetComponent<Collider>());
+            Destroy(bullet, bulletLifeTime);
+            currentAmmo -= 1;
+            ammoCountText.text = currentAmmo + "x";
+        }
+    }
+
+    void Reload()
+    {
+        if(Input.GetButtonDown("Reload") && this.currentAmmo < this.maxAmmo)
+        {
+            GunAnimator.SetTrigger("Reload");
+            this.currentAmmo = maxAmmo;
+            ammoCountText.text = currentAmmo + "x";
         }
     }
 }
