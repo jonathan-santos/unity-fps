@@ -33,6 +33,9 @@ public class PlayerAction : MonoBehaviour
     public int currentAmmo = 8;
     public Text ammoCountText;
 
+    [Header("Sword")]
+    public Animator SwordAnimator;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -45,8 +48,9 @@ public class PlayerAction : MonoBehaviour
         Movement();
         Aim();
         Jump();
-        Shoot();
-        Reload();
+        AttackSword();
+        //Shoot();
+        //Reload();
     }
 
     private void RemoveMouse()
@@ -83,6 +87,14 @@ public class PlayerAction : MonoBehaviour
             rb.AddForce(Vector3.up * jumpStrengh);
     }
 
+    void AttackSword()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            SwordAnimator.SetTrigger("Attack");
+        }
+    }
+
     void Shoot()
     {
         if(Input.GetButtonDown("Fire1") && this.currentAmmo > 0)
@@ -95,7 +107,7 @@ public class PlayerAction : MonoBehaviour
             Physics.IgnoreCollision(this.GetComponent<Collider>(), bullet.GetComponent<Collider>());
             Destroy(bullet, bulletLifeTime);
             currentAmmo -= 1;
-            ammoCountText.text = currentAmmo + "x";
+            ammoCountText.text = $"{currentAmmo}/{maxAmmo}";
         }
     }
 
@@ -105,7 +117,7 @@ public class PlayerAction : MonoBehaviour
         {
             GunAnimator.SetTrigger("Reload");
             this.currentAmmo = maxAmmo;
-            ammoCountText.text = currentAmmo + "x";
+            ammoCountText.text = $"{currentAmmo}/{maxAmmo}";
         }
     }
 }

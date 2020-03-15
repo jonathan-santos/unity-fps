@@ -12,14 +12,19 @@ public class HealthAction : MonoBehaviour
     {
         health = maxHealth;
 
-        healthBar.maxValue = maxHealth;
-        healthBar.value = health;
+        if(healthBar != null)
+        {
+            healthBar.maxValue = maxHealth;
+            healthBar.value = health;
+        }
     }
 
     public void ChangeHealth(float change)
     {
         health += change;
-        healthBar.value = health;
+
+        if(healthBar != null)
+            healthBar.value = health;
 
         if (health < 1 && destroyObjectOnZeroHealth)
         {

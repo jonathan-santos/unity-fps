@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8551595204330694193}
   - component: {fileID: 7054784583811055267}
   - component: {fileID: 1452658170307876255}
-  - component: {fileID: 7345288569021720412}
   m_Layer: 0
   m_Name: handle
   m_TagString: Untagged
@@ -78,20 +77,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &7345288569021720412
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5867825965661679920}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &6759520928034598506
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,7 +88,7 @@ GameObject:
   - component: {fileID: 3007353689966286570}
   - component: {fileID: 1963075380544826271}
   m_Layer: 0
-  m_Name: Sword
+  m_Name: EnemySword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -156,7 +141,6 @@ GameObject:
   - component: {fileID: 5115660423786131341}
   - component: {fileID: 3583003724230177715}
   - component: {fileID: 1344161675411468639}
-  - component: {fileID: 95888568482255098}
   m_Layer: 0
   m_Name: punch
   m_TagString: Untagged
@@ -223,20 +207,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &95888568482255098
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6770861671465356635}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8337948521229500612
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,7 +218,6 @@ GameObject:
   - component: {fileID: 4332644041892085382}
   - component: {fileID: 5341235126132315782}
   - component: {fileID: 2257201596344926699}
-  - component: {fileID: 5273548316299325352}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -315,16 +284,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &5273548316299325352
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8337948521229500612}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
