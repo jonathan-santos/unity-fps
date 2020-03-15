@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using System;
+using UnityEngine;
 
 public class PlayerAction : MonoBehaviour
 {
@@ -19,28 +19,15 @@ public class PlayerAction : MonoBehaviour
     public LayerMask groundLayer;
     public GameObject groundDetect;
 
-    [Header("Bullet")]
-    public GameObject bulletPrefab;
-    public float bulletStrength = 50f;
-    public int bulletLifeTime = 3;
-    public Transform bulletOrigin;
-    public Animator GunAnimator;
-    GameObject bullet;
-    Rigidbody bulletRB;
-
-    [Header("Ammo")]
-    public int maxAmmo = 8;
-    public int currentAmmo = 8;
-    public Text ammoCountText;
-
-    [Header("Sword")]
-    public Animator SwordAnimator;
+    [Header("Weapon Selector")]
+    public GameObject[] weapons;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         camera = GetComponentInChildren<Camera>();
         RemoveMouse();
+        SelectWeapon(0);
     }
 
     void Update()
@@ -48,12 +35,10 @@ public class PlayerAction : MonoBehaviour
         Movement();
         Aim();
         Jump();
-        AttackSword();
-        //Shoot();
-        //Reload();
+        SelectWeapons();
     }
 
-    private void RemoveMouse()
+    void RemoveMouse()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -86,38 +71,19 @@ public class PlayerAction : MonoBehaviour
         if (isGrounded && Input.GetAxis("Jump") > 0)
             rb.AddForce(Vector3.up * jumpStrengh);
     }
-
-    void AttackSword()
+    void SelectWeapons()
     {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            SwordAnimator.SetTrigger("Attack");
-        }
+        if (Input.GetKey(KeyCode.Alpha1))
+            SelectWeapon(0);
+        if (Input.GetKey(KeyCode.Alpha2))
+            SelectWeapon(1);
     }
 
-    void Shoot()
+    void SelectWeapon(int selectedWeaponIndex)
     {
-        if(Input.GetButtonDown("Fire1") && this.currentAmmo > 0)
+        for(int i = 0; i < this.weapons.Length; i++)
         {
-            GunAnimator.SetTrigger("Shoot");
-
-            bullet = Instantiate(bulletPrefab, bulletOrigin.position, camera.transform.rotation);
-            bulletRB = bullet.GetComponent<Rigidbody>();
-            bulletRB.AddForce(camera.transform.rotation * Vector3.forward * bulletStrength, ForceMode.Impulse);
-            Physics.IgnoreCollision(this.GetComponent<Collider>(), bullet.GetComponent<Collider>());
-            Destroy(bullet, bulletLifeTime);
-            currentAmmo -= 1;
-            ammoCountText.text = $"{currentAmmo}/{maxAmmo}";
-        }
-    }
-
-    void Reload()
-    {
-        if(Input.GetButtonDown("Reload") && this.currentAmmo < this.maxAmmo)
-        {
-            GunAnimator.SetTrigger("Reload");
-            this.currentAmmo = maxAmmo;
-            ammoCountText.text = $"{currentAmmo}/{maxAmmo}";
+            weapons[i].SetActive(i == selectedWeaponIndex);
         }
     }
 }

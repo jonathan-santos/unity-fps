@@ -154,8 +154,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4131585746500124933}
   - component: {fileID: 7337874250252403889}
-  - component: {fileID: 2502104147799340128}
   - component: {fileID: 2844093757621459777}
+  - component: {fileID: 114078997272762056}
+  - component: {fileID: 2502104147799340128}
   m_Layer: 0
   m_Name: PlayerSword
   m_TagString: Untagged
@@ -192,22 +193,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.15, y: 1.275, z: 0.05}
   m_Center: {x: 0, y: 0.85, z: 0}
---- !u!114 &2502104147799340128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4131585746500124932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8179a9c7054fa7448ce68aeb2910471, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 2
-  knockback: 25
-  collisionObjectiveTag: enemy
-  selfDestroyOnCollision: 0
 --- !u!95 &2844093757621459777
 Animator:
   serializedVersion: 3
@@ -227,6 +212,45 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114078997272762056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4131585746500124932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 772071ab7f72608459aa0635a142f655, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meleeMode: 1
+  projectileMode: 0
+  camera: {fileID: 0}
+  projectilePrefab: {fileID: 0}
+  projectileSpeed: 50
+  projectileLifeTime: 3
+  projectileOrigin: {fileID: 0}
+  useAmmo: 0
+  maxAmmo: 8
+  currentAmmo: 0
+  ammoCountText: {fileID: 0}
+--- !u!114 &2502104147799340128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4131585746500124932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8179a9c7054fa7448ce68aeb2910471, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 2
+  knockback: 25
+  collisionObjectiveTag: enemy
+  selfDestroyOnCollision: 0
 --- !u!1 &4131585746774328385
 GameObject:
   m_ObjectHideFlags: 0

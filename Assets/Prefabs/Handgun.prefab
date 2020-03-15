@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2287784356319082686}
   - component: {fileID: 2287784356319082681}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: GunBarrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,7 +105,7 @@ Transform:
   m_LocalScale: {x: 2.4587214, y: 0.8046347, z: 1.8024838}
   m_Children: []
   m_Father: {fileID: 2287784356565189785}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2287784356565189861
 GameObject:
@@ -119,8 +119,9 @@ GameObject:
   - component: {fileID: 2287784356565189784}
   - component: {fileID: 2287784356565189787}
   - component: {fileID: 876118671}
+  - component: {fileID: 114270907629324718}
   m_Layer: 0
-  m_Name: Gun
+  m_Name: HandGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,8 +138,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.17337465, y: 0.52978075, z: 0.23649588}
   m_Children:
-  - {fileID: 2287784357128755237}
   - {fileID: 2287784356563923593}
+  - {fileID: 2287784357128755237}
   - {fileID: 2287784356319082687}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -207,6 +208,30 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114270907629324718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2287784356565189861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 772071ab7f72608459aa0635a142f655, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meleeMode: 0
+  projectileMode: 1
+  camera: {fileID: 0}
+  projectilePrefab: {fileID: 4369587733774667850, guid: f44c5bb1e38724245b0743271332a75f,
+    type: 3}
+  projectileSpeed: 50
+  projectileLifeTime: 3
+  projectileOrigin: {fileID: 2287784356563923593}
+  useAmmo: 1
+  maxAmmo: 8
+  currentAmmo: 0
+  ammoCountText: {fileID: 0}
 --- !u!1 &2287784357128755236
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,7 +244,7 @@ GameObject:
   - component: {fileID: 2287784357128755416}
   - component: {fileID: 2287784357128755419}
   m_Layer: 0
-  m_Name: Gun1
+  m_Name: GunTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -237,7 +262,7 @@ Transform:
   m_LocalScale: {x: 1.3338156, y: 0.36267248, z: 2.5648823}
   m_Children: []
   m_Father: {fileID: 2287784356565189785}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2287784357128755416
 MeshFilter:
