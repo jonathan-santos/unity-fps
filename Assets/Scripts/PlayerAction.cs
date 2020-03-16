@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerAction : MonoBehaviour
 {
@@ -21,6 +22,12 @@ public class PlayerAction : MonoBehaviour
 
     [Header("Weapon Selector")]
     public GameObject[] weapons;
+    WeaponAction currentWeapon;
+
+    [Header("UI")]
+    public Text ammoCountText;
+    public Image ammoCountImage;
+    public Image aimCursor;
 
     void Start()
     {
@@ -83,7 +90,31 @@ public class PlayerAction : MonoBehaviour
     {
         for(int i = 0; i < this.weapons.Length; i++)
         {
-            weapons[i].SetActive(i == selectedWeaponIndex);
+            if (i == selectedWeaponIndex)
+            {
+                weapons[i].SetActive(true);
+
+                this.currentWeapon = weapons[i].GetComponent<WeaponAction>();
+                this.currentWeapon.OnChangeAmmo.RemoveAllListeners();
+                this.currentWeapon.OnChangeAmmo.AddListener(this.OnWeaponReload);
+                this.currentWeapon.OnChangeAmmo.Invoke();
+
+                aimCursor.enabled = this.currentWeapon.aimCursorSprite != null;
+                ammoCountText.enabled = this.currentWeapon.useAmmo;
+                ammoCountImage.enabled = this.currentWeapon.ammoCountSprite!= null;
+
+                aimCursor.sprite = this.currentWeapon.aimCursorSprite;
+                ammoCountImage.sprite = this.currentWeapon.ammoCountSprite;
+            }
+            else
+            {
+                weapons[i].SetActive(false);
+            }
         }
+    }
+
+    void OnWeaponReload()
+    {
+        ammoCountText.text = $"{this.currentWeapon.currentAmmo}/{this.currentWeapon.maxAmmo}";
     }
 }

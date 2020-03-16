@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 876118671}
   - component: {fileID: 114270907629324718}
   m_Layer: 0
-  m_Name: HandGun
+  m_Name: Handgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -231,7 +231,8 @@ MonoBehaviour:
   useAmmo: 1
   maxAmmo: 8
   currentAmmo: 0
-  ammoCountText: {fileID: 0}
+  ammoCountSprite: {fileID: 21300000, guid: 784cd87058a79644a9f7afe00e2003e0, type: 3}
+  aimCursorSprite: {fileID: 21300000, guid: c818eef4ce6399a41b876620d312cc00, type: 3}
 --- !u!1 &2287784357128755236
 GameObject:
   m_ObjectHideFlags: 0

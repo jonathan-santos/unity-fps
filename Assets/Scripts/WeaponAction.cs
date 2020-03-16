@@ -1,6 +1,5 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class WeaponAction : MonoBehaviour
 {
@@ -23,7 +22,11 @@ public class WeaponAction : MonoBehaviour
     public bool useAmmo = true;
     public int maxAmmo = 8;
     public int currentAmmo = 0;
-    public Text ammoCountText;
+    public UnityEvent OnChangeAmmo;
+
+    [Header("Sprites")]
+    public Sprite ammoCountSprite;
+    public Sprite aimCursorSprite;
 
     void Start()
     {
@@ -64,7 +67,7 @@ public class WeaponAction : MonoBehaviour
             Destroy(projectile, projectileLifeTime);
 
             currentAmmo -= 1;
-            ammoCountText.text = $"{currentAmmo}/{maxAmmo}";
+            OnChangeAmmo.Invoke();
         }
     }
 
@@ -74,7 +77,7 @@ public class WeaponAction : MonoBehaviour
         {
             animator.SetTrigger("Reload");
             this.currentAmmo = maxAmmo;
-            ammoCountText.text = $"{currentAmmo}/{maxAmmo}";
+            OnChangeAmmo.Invoke();
         }
     }
 

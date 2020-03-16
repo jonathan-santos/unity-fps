@@ -49,7 +49,10 @@ public class DamageAction : MonoBehaviour
 
     void ReEnableCollidedObjectNavMesh()
     {
-        collidedObjectNavMesh.enabled = true;
-        collidedObjectRB.isKinematic = true;
+        if(this.collidedObjectNavMesh!= null)
+        {
+            collidedObjectNavMesh.enabled = true;
+            collidedObjectRB.isKinematic = true;
+        }
     }
 }
