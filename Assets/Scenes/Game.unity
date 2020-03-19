@@ -720,6 +720,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42497730912d88449924ed64482139ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autoStart: 1
   spawnInterval: 0
   objects:
   - {fileID: 8036030111310834632, guid: df46b3945abe2aa4ca5c13a40f0b3feb, type: 3}
@@ -755,6 +756,7 @@ GameObject:
   m_Component:
   - component: {fileID: 970015233}
   - component: {fileID: 970015234}
+  - component: {fileID: 970015235}
   m_Layer: 0
   m_Name: Enemies
   m_TagString: Untagged
@@ -788,6 +790,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42497730912d88449924ed64482139ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autoStart: 0
   spawnInterval: 2
   objects:
   - {fileID: 5182976094804951554, guid: feeccd2e497db1842a288590c562ed22, type: 3}
@@ -795,6 +798,21 @@ MonoBehaviour:
   quantityMaximum: 100
   minDistanceFromSpawn: 100
   maxDistanceFromSpawn: 100
+--- !u!114 &970015235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 970015232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 726699316a4dd1f409f2d05476c42eb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemiesSpawn: {fileID: 970015234}
+  ammountOfEnemiesInHorde: 050000000a0000000f000000
+  timeBetweenHordes: 10
 --- !u!1 &1111488716 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2287784356565189861, guid: 55a60052e604c034c88cc42a4ad5af49,

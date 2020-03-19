@@ -3,6 +3,7 @@
 public class SpawnerAction : MonoBehaviour
 {
     [Header("Spawn")]
+    public bool autoStart = true;
     public float spawnInterval;
     public GameObject[] objects;
 
@@ -19,10 +20,11 @@ public class SpawnerAction : MonoBehaviour
     int count = 0;
 
     void Start() {
-        StartSpawn();
+        if(this.autoStart)
+            StartSpawn();
     }
 
-    void StartSpawn()
+    public void StartSpawn()
     {
         count = 0;
         maxcount = Random.Range(quantityMinimum, quantityMaximum);
