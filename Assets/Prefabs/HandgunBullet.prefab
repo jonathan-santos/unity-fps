@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4369587733774667848}
   - component: {fileID: 4369587733774667851}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: HandgunBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,8 +77,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  knockback: 1
   collisionObjectiveTag: enemy
-  destroyOnCollision: 1
+  selfDestroyOnCollision: 1
 --- !u!1 &4369587734195339162
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,8 +27,6 @@ public class HealthAction : MonoBehaviour
             healthBar.value = health;
 
         if (health < 1 && destroyObjectOnZeroHealth)
-        {
             Destroy(this.gameObject);
-        }
     }
 }

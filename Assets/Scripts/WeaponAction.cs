@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 public class WeaponAction : MonoBehaviour
@@ -7,7 +8,7 @@ public class WeaponAction : MonoBehaviour
     public bool meleeMode;
     public bool projectileMode;
     public new Camera camera;
-    DamageAction damage;
+    Collider collision;
     Animator animator;
 
     [Header("Projectile")]
@@ -32,7 +33,10 @@ public class WeaponAction : MonoBehaviour
     {
         this.currentAmmo = maxAmmo;
         this.animator = GetComponent<Animator>();
-        this.damage = GetComponent<DamageAction>();
+        this.collision = GetComponent<Collider>();
+
+        if(this.collision != null)
+            this.collision.enabled = false;
     }
 
     void Update()
@@ -40,9 +44,7 @@ public class WeaponAction : MonoBehaviour
         if(Input.GetButtonDown("Fire1"))
         {
             if (this.projectileMode)
-            {
                 ProjectileAttack();
-            }
             if (this.meleeMode)
                 MeleeAtack();
         }
@@ -52,7 +54,14 @@ public class WeaponAction : MonoBehaviour
     }
     void MeleeAtack()
     {
+        this.collision.enabled = true;
         this.animator.SetTrigger("Attack");
+        Invoke("DisableWeaponCollision", 0.5f);
+    }
+
+    void DisableWeaponCollision()
+    {
+        this.collision.enabled = false;
     }
 
     void ProjectileAttack()
@@ -80,5 +89,4 @@ public class WeaponAction : MonoBehaviour
             OnChangeAmmo.Invoke();
         }
     }
-
 }

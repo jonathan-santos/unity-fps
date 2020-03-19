@@ -14,7 +14,8 @@ public class EnemyAction : MonoBehaviour
         InvokeRepeating("GoToPlayer", 0, 1);
     }
 
-    void GoToPlayer() {
+    void GoToPlayer()
+    {
         if(agent.enabled)
             agent.destination = player.transform.position;
     }
