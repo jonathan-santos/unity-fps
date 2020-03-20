@@ -1,9 +1,13 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 public class HordesAction : MonoBehaviour
 {
-    public SpawnerAction enemiesSpawn;
+    [Header("Imports")]
+    public SpawnerAction enemiesSpawner;
+    public TextMeshProUGUI enemiesCounter;
 
+    [Header("Configuration")]
     public int[] ammountOfEnemiesInHorde = { 5, 10, 15 };
     public int timeBetweenHordes = 10;
     public bool isInHorde = false;
@@ -18,19 +22,20 @@ public class HordesAction : MonoBehaviour
     void StartHorde()
     {
         isInHorde = true;
-        Debug.Log("currentHorde: " + currentHorde);
-        enemiesSpawn.quantityMinimum = ammountOfEnemiesInHorde[currentHorde];
-        enemiesSpawn.quantityMaximum = ammountOfEnemiesInHorde[currentHorde];
-        enemiesSpawn.StartSpawn();
+        enemiesSpawner.quantityMinimum = ammountOfEnemiesInHorde[currentHorde];
+        enemiesSpawner.quantityMaximum = ammountOfEnemiesInHorde[currentHorde];
+        enemiesSpawner.StartSpawn();
     }
 
     void Update()
     {
         var enemiesQuantity = GameObject.FindGameObjectsWithTag("enemy").Length;
-        if(enemiesQuantity == 0 && this.isInHorde)
+        enemiesCounter.text = $"{enemiesQuantity}x";
+
+        if(enemiesQuantity == 0 && this.isInHorde && enemiesSpawner.finishedSpawning)
         {
             this.currentHorde += 1;
-            isInHorde = false;
+            this.isInHorde = false;
             Invoke("StartHorde", timeBetweenHordes);
         }
 

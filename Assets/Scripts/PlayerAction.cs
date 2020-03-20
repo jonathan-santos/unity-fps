@@ -1,4 +1,4 @@
-﻿using System;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,7 +25,7 @@ public class PlayerAction : MonoBehaviour
     WeaponAction currentWeapon;
 
     [Header("UI")]
-    public Text ammoCountText;
+    public TextMeshProUGUI ammoCountText;
     public Image ammoCountImage;
     public Image aimCursor;
 
