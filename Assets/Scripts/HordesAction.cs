@@ -6,9 +6,11 @@ public class HordesAction : MonoBehaviour
     [Header("Imports")]
     public SpawnerAction enemiesSpawner;
     public TextMeshProUGUI enemiesCounter;
+    public CountdownTimerAction countdownTimer;
 
     [Header("Configuration")]
     public int[] ammountOfEnemiesInHorde = { 5, 10, 15 };
+    public int secondsToStart = 5;
     public int timeBetweenHordes = 10;
     public bool isInHorde = false;
 
@@ -16,7 +18,8 @@ public class HordesAction : MonoBehaviour
 
     void Start()
     {
-        Invoke("StartHorde", timeBetweenHordes / 2);
+        Invoke("StartHorde", this.secondsToStart);
+        countdownTimer.StartTimer(this.secondsToStart);
     }
 
     void StartHorde()
@@ -37,6 +40,7 @@ public class HordesAction : MonoBehaviour
             this.currentHorde += 1;
             this.isInHorde = false;
             Invoke("StartHorde", timeBetweenHordes);
+            countdownTimer.StartTimer(timeBetweenHordes);
         }
 
     }
