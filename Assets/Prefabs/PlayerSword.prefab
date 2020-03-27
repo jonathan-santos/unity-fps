@@ -191,8 +191,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.15, y: 1.275, z: 0.05}
-  m_Center: {x: 0, y: 0.85, z: 0}
+  m_Size: {x: 0.06453329, y: 1.2749999, z: 0.05}
+  m_Center: {x: 0.0036210418, y: 0.85, z: 0}
 --- !u!95 &2844093757621459777
 Animator:
   serializedVersion: 3
@@ -234,7 +234,11 @@ MonoBehaviour:
   useAmmo: 0
   maxAmmo: 8
   currentAmmo: 0
-  ammoCountText: {fileID: 0}
+  OnChangeAmmo:
+    m_PersistentCalls:
+      m_Calls: []
+  ammoCountSprite: {fileID: 0}
+  aimCursorSprite: {fileID: 0}
 --- !u!114 &2502104147799340128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,7 +281,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4131585746774328385}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.78400004, z: 0}
+  m_LocalPosition: {x: 0, y: 0.814, z: 0}
   m_LocalScale: {x: 0.15, y: 1.2, z: 0.05}
   m_Children: []
   m_Father: {fileID: 5799132483685277890}

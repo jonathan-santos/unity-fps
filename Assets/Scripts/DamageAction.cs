@@ -55,4 +55,12 @@ public class DamageAction : MonoBehaviour
             collidedObjectRB.isKinematic = true;
         }
     }
+
+    void OnDestroy()
+    {
+        if(collidedObjectNavMesh != null && !collidedObjectNavMesh.enabled)
+        {
+            ReEnableCollidedObjectNavMesh();
+        }
+    }
 }
